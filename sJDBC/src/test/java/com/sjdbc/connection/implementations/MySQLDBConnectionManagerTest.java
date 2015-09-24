@@ -5,8 +5,9 @@ import static org.junit.Assert.assertNotNull;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.sjdbc.configuration.DBConnectionConfiguration;
-import com.sjdbc.enumtypes.DatabaseType;
+import com.mbero.sjdbc.configuration.DBConnectionConfiguration;
+import com.mbero.sjdbc.connection.implementation.MySQLDBConnectionManager;
+import com.mbero.sjdbc.enumtype.DatabaseType;
 
 public class MySQLDBConnectionManagerTest {
 	DBConnectionConfiguration configuration = new DBConnectionConfiguration();

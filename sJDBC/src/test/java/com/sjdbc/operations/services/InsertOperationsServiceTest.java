@@ -1,4 +1,4 @@
-	package com.sjdbc.operations.services;
+package com.sjdbc.operations.services;
 
 import static org.junit.Assert.*;
 
@@ -6,12 +6,13 @@ import org.apache.log4j.Logger;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.sjdbc.configuration.DBConnectionConfiguration;
-import com.sjdbc.enumtypes.DatabaseType;
-import com.sjdbc.services.factory.DBOperationsServiceFactory;
+import com.mbero.sjdbc.configuration.DBConnectionConfiguration;
+import com.mbero.sjdbc.enumtype.DatabaseType;
+import com.mbero.sjdbc.operations.service.DBOperationsService;
+import com.mbero.sjdbc.operations.service.InsertOperationsService;
+import com.mbero.sjdbc.service.factory.DBOperationsServiceFactory;
 
-public class InsertOperationsServiceTest extends DBOperationsService
-{
+public class InsertOperationsServiceTest extends DBOperationsService {
 	final static Logger log = Logger.getLogger(InsertOperationsService.class);
 	DBConnectionConfiguration configuration = new DBConnectionConfiguration();
 
@@ -25,11 +26,13 @@ public class InsertOperationsServiceTest extends DBOperationsService
 
 	@Test
 	public void executeAnyInsertQueryFromParameterTest() {
-		
-		InsertOperationsService insertOperationsService = DBOperationsServiceFactory.getInsertOperationsService();
+
+		InsertOperationsService insertOperationsService = DBOperationsServiceFactory
+				.getInsertOperationsService();
 		String query = "INSERT INTO `trainingpartner`.`roles`(`id`,`role`) VALUES ('4', 'test')";
-		int insertedRows = insertOperationsService.executeAnyInsertQueryFromParameter(configuration, query);
-		assertTrue(insertedRows!=0);
-		
+		boolean rowsInsertedProperly = insertOperationsService
+				.executeAnyInsertQueryFromParameter(configuration, query);
+		assertTrue(rowsInsertedProperly);
+
 	}
 }

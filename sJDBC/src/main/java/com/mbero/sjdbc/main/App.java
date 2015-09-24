@@ -1,4 +1,4 @@
-package com.sjdbc.main;
+package com.mbero.sjdbc.main;
 
 
 /**

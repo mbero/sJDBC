@@ -1,26 +1,28 @@
-package com.sjdbc.configuration;
+package com.mbero.sjdbc.configuration;
 
-import com.sjdbc.enumtypes.DatabaseType;
+import com.mbero.sjdbc.enumtype.DatabaseType;
 
 /**
- * Klasa służąca do tworzenia obiektów zawierających niezbędne informacje do połączenia
+ * POJO class which will be used for creating database connection configuration
+ * objects
  * 
  * @author Marcin Berendt
- *
  */
 public class DBConnectionConfiguration {
 
 	private String hostAndDatabaseName;
 	private String user;
 	private String password;
-	private DatabaseType databaseType; 
+	private DatabaseType databaseType;
 
 	public String getHostAndDatabaseName() {
 		return hostAndDatabaseName;
 	}
+
 	/**
-	 * Example for PostgresSQL : "localhost:5432/test"
-	 * Example for MySQL : localhost:3306/test
+	 * Example for PostgresSQL : "localhost:5432/test" Example for MySQL :
+	 * localhost:3306/test
+	 * 
 	 * @param hostAndDatabaseName
 	 */
 	public void setHostAndDatabaseName(String hostAndDatabaseName) {

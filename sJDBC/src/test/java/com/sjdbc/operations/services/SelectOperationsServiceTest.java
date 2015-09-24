@@ -8,10 +8,10 @@ import java.util.Map;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.sjdbc.configuration.DBConnectionConfiguration;
-import com.sjdbc.enumtypes.DBOperationsServiceType;
-import com.sjdbc.enumtypes.DatabaseType;
-import com.sjdbc.services.factory.DBOperationsServiceFactory;
+import com.mbero.sjdbc.configuration.DBConnectionConfiguration;
+import com.mbero.sjdbc.enumtype.DatabaseType;
+import com.mbero.sjdbc.operations.service.SelectOperationsService;
+import com.mbero.sjdbc.service.factory.DBOperationsServiceFactory;
 
 public class SelectOperationsServiceTest {
 
@@ -27,16 +27,22 @@ public class SelectOperationsServiceTest {
 
 	@Test
 	public void executeAnySelectQueryFromParameterTest() {
-		SelectOperationsService selectOperationsService = DBOperationsServiceFactory.getSelectOperationsService();
-		List<Map<String, String>> result = selectOperationsService.executeAnySelectQueryFromParameter(configuration,"SELECT * FROM trainingpartner.exercises;","planned_repeats");
+		SelectOperationsService selectOperationsService = DBOperationsServiceFactory
+				.getSelectOperationsService();
+		List<Map<String, String>> result = selectOperationsService
+				.executeAnySelectQueryFromParameter(configuration,
+						"SELECT * FROM trainingpartner.exercises;",
+						"planned_repeats");
 		assertTrue(result.size() != 0);
 	}
-	
+
 	@Test
-	public void getValuesFromDBTest()
-	{
-		SelectOperationsService selectOperationsService = DBOperationsServiceFactory.getSelectOperationsService();
-		List<Map<String,String>> result = selectOperationsService.getValuesFromDB(configuration, "trainingpartner.exercises", "", "planned_repeats" );                     
+	public void getValuesFromDBTest() {
+		SelectOperationsService selectOperationsService = DBOperationsServiceFactory
+				.getSelectOperationsService();
+		List<Map<String, String>> result = selectOperationsService
+				.getValuesFromDB(configuration, "trainingpartner.exercises",
+						"", "planned_repeats");
 		assertTrue(result.size() != 0);
 	}
 

@@ -1,4 +1,4 @@
-package com.sjdbc.operations.services;
+package com.mbero.sjdbc.operations.service;
 
 public abstract class DBOperationsService 
 {
