@@ -13,7 +13,6 @@ public class PostgreSQLDBConnectionManager implements DBConnectionManager {
 
 	final static Logger log = Logger.getLogger(MySQLDBConnectionManager.class);
 	private static Connection conn;
-
 	public Connection createConnection(
 			DBConnectionConfiguration dbConnectionConfiguraton) {
 

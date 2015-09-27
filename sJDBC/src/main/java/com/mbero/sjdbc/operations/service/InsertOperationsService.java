@@ -3,6 +3,7 @@ package com.mbero.sjdbc.operations.service;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Map;
 
 import org.apache.log4j.Logger;
 
@@ -46,4 +47,45 @@ public class InsertOperationsService extends DBOperationsService {
 		}
 		return rowsInsertedProperly;
 	}
+
+	/**
+	 * Function which insert data based on DBConnectionConfiguration object ,
+	 * tableName parameter and values Map, which keys are columns id's
+	 * 
+	 * @param DBConnectionConfiguration
+	 *            dbConnectionConfiguration
+	 * @param String
+	 *            tableName
+	 * @param Map
+	 *            <String,Object> values
+	 * @return
+	 */
+	public boolean insertDataBasedOnValuesMap(
+			DBConnectionConfiguration dbConnectionConfiguration,
+			String tableName, Map<String, Object> values) {
+		log.debug("Wywołuje funkcje executeAnyInsertQueryFromParameter() z InsertOperationsService");
+		boolean rowsInsertedProperly = false;
+		DBConnectionManager connectionManager = Tools
+				.returnProperConnectionManager(dbConnectionConfiguration
+						.getDatabaseType());
+		Connection conn = connectionManager
+				.createConnection(dbConnectionConfiguration);
+		int insertedRows = 0;
+		String insertQuery = "";
+		try {
+			Statement stmt = conn.createStatement();
+			insertQuery = Tools.returnInsertQueryFromMap(tableName, values);
+			insertedRows = stmt.executeUpdate(insertQuery);
+			if (insertedRows > 0) {
+				rowsInsertedProperly = true;
+			}
+			log.debug(insertQuery);
+		} catch (SQLException e) {
+			log.debug("Wystapil blad podczas wykonywania zapytania : "
+					+ insertQuery);
+			log.debug(e.getCause(), e);
+		}
+		return rowsInsertedProperly;
+	}
+
 }

@@ -20,10 +20,7 @@ public class SelectOperationsService extends DBOperationsService {
 	final static Logger log = Logger.getLogger(SelectOperationsService.class);
 
 	/**
-	 * Funkcja zwraca listę map na podstawie dwóch parametrów - dowolnego
-	 * zapytania SELECT oraz parametru opcjonalnego zawierającego listę kolummn,
-	 * czyli (kluczy w każdym z elementów listy map)
-	 * 
+	 *Function return list of Maps based on parameters like selectQuery and columnNames - which are keys for every map in the list
 	 * @param selectQuery
 	 * @param columnNames
 	 * @return List<Map<String,String>> results
@@ -62,13 +59,10 @@ public class SelectOperationsService extends DBOperationsService {
 	}
 
 	/**
-	 * Funkcja pobiera wartości z tabeli na podstawie parametrów : nazwy tabeli
-	 * , warunku WHERE w postaci np( 'nazwa_kolumny'='wartosc') i kolumn które
-	 * będą zwrócone jako klucze w liście map będącej rezultatem
-	 * 
+	 Function return list of Maps based on parameters like tableNam, condition and columnNames - which are keys for every map in the list
 	 * @param dbConnectionConfiguration
-	 * @param tableName
-	 * @param condition
+	 * @param tableName 
+	 * @param condition - like (WHERE <column_name> = <some value>)
 	 * @param columnNames
 	 * @return List<Map<String,String>> - lista map w których kluczami są nazwy
 	 *         kolumn z parametru columnNames

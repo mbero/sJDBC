@@ -14,18 +14,21 @@ public class DBConnectionConfiguration {
 	private String user;
 	private String password;
 	private DatabaseType databaseType;
-
+	private String databaseName;
+	
 	public String getHostAndDatabaseName() {
 		return hostAndDatabaseName;
 	}
 
 	/**
-	 * Example for PostgresSQL : "localhost:5432/test" Example for MySQL :
-	 * localhost:3306/test
+	 * Example for PostgresSQL : "localhost:5432/test"
+	 * Example for MySQL : localhost:3306/test
 	 * 
 	 * @param hostAndDatabaseName
 	 */
 	public void setHostAndDatabaseName(String hostAndDatabaseName) {
+		String[] arrayFromSplit = hostAndDatabaseName.split("/");
+		this.databaseName=arrayFromSplit[1];	
 		this.hostAndDatabaseName = hostAndDatabaseName;
 	}
 
@@ -51,6 +54,14 @@ public class DBConnectionConfiguration {
 
 	public void setDatabaseType(DatabaseType databaseType) {
 		this.databaseType = databaseType;
+	}
+
+	public String getDatabaseName() {
+		return databaseName;
+	}
+
+	public void setDatabaseName(String databaseName) {
+		this.databaseName = databaseName;
 	}
 
 }

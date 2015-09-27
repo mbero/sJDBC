@@ -8,7 +8,8 @@ public interface DBConnectionManager {
 
 	public Connection createConnection(
 			DBConnectionConfiguration dbConnectionConfiguraton);
-
 	public void closeConnection(Connection conn);
+	
+	
 
 }
