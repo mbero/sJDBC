@@ -29,7 +29,17 @@ public class TableManagmentOperationsService extends DBOperationsService {
 	 */
 	public boolean createTable(
 			DBConnectionConfiguration dbConnectionConfiguration, TableCreationConfiguration tableCreationConfiguration) {
-
+		DBConnectionManager connectionManager = Tools.returnProperConnectionManager(dbConnectionConfiguration.getDatabaseType());
+		Connection conn = connectionManager.createConnection(dbConnectionConfiguration);
+		String dropTableQuery = Tools.constructCreateTableQuery(tableCreationConfiguration);
+		try {
+			Statement stmt = conn.createStatement();
+			stmt.executeUpdate(dropTableQuery);
+			} catch (SQLException e) {
+			log.debug("Wystapil blad podczas wykonywania zapytania : "
+					+ dropTableQuery);
+			log.debug(e.getCause(), e);
+		}
 		return true;
 	}
 	/**
@@ -57,6 +67,7 @@ public class TableManagmentOperationsService extends DBOperationsService {
 			log.debug("Wystapil blad podczas wykonywania zapytania : "
 					+ createTableQuery);
 			log.debug(e.getCause(), e);
+			return false;
 		}
 		
 		return tableCreatedProperly;
@@ -68,7 +79,19 @@ public class TableManagmentOperationsService extends DBOperationsService {
 	 * @return
 	 */
 	public boolean deleteTable(DBConnectionConfiguration dbConnectionConfiguration, String tableName)
-	{
+	{	
+		DBConnectionManager connectionManager = Tools.returnProperConnectionManager(dbConnectionConfiguration.getDatabaseType());
+		Connection conn = connectionManager.createConnection(dbConnectionConfiguration);
+		String dropTableQuery = "DROP TABLE " + tableName;
+		try {
+			Statement stmt = conn.createStatement();
+			stmt.executeUpdate(dropTableQuery);
+			} catch (SQLException e) {
+			log.debug("Wystapil blad podczas wykonywania zapytania : "
+					+ dropTableQuery);
+			log.debug(e.getCause(), e);
+			return false;
+		}
 		return true;
 	}
 	/**

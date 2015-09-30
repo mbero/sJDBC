@@ -35,4 +35,6 @@ public class InsertOperationsServiceTest extends DBOperationsService {
 		assertTrue(rowsInsertedProperly);
 
 	}
+	//TODO 1.Test metody zwracajacej string z kolumnam
+	
 }

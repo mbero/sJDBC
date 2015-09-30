@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.mbero.sjdbc.configuration.TableCreationConfiguration;
 import com.mbero.sjdbc.connection.implementation.MySQLDBConnectionManager;
 import com.mbero.sjdbc.connection.implementation.PostgreSQLDBConnectionManager;
 import com.mbero.sjdbc.enumtype.DatabaseType;
@@ -101,6 +102,38 @@ public class Tools {
 		valuesToReturn = valuesToReturn.substring(0,
 				valuesToReturn.length() - 1);
 		return valuesToReturn;
+	}
+	
+	public static String constructCreateTableQuery(TableCreationConfiguration tableCreationConfigurationObject)
+	{
+		StringBuilder queryBuilder = new StringBuilder();
+		queryBuilder.append("CREATE TABLE ").append(tableCreationConfigurationObject.getTableName()+" (");
+		Map<String,String> columnNamesWithTypes = tableCreationConfigurationObject.getColumnsWithTypes();
+		Map<String,String> columnNamesWithSizes = tableCreationConfigurationObject.getColumnsWithSizes();
+		Set<String> columnNames = columnNamesWithTypes.keySet();
+		
+		for(String currentColumnName : columnNames)
+		{
+			queryBuilder.append(currentColumnName+" ").append(columnNamesWithTypes.get(currentColumnName) + " ");
+			if(columnNamesWithSizes.get(currentColumnName).equals("")!=true)
+			{
+				queryBuilder.append("(" + columnNamesWithSizes.get(currentColumnName)+ "),");
+			}
+			else
+			{
+				queryBuilder.append(",");	
+			}
+		}
+		String finalQuery = queryBuilder.toString();
+		if(finalQuery.endsWith(","))
+		{
+			finalQuery=finalQuery.substring(0,finalQuery.length()-1).concat(")");
+		}
+		/*
+		 CREATE TABLE Persons (PersonID  (),FirstName 255 (255),LastName 255 (255),
+		 */
+		
+		return finalQuery;
 	}
 
 }

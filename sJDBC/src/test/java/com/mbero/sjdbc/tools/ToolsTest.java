@@ -1,6 +1,6 @@
 package com.mbero.sjdbc.tools;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -12,11 +12,11 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.mbero.sjdbc.configuration.DBConnectionConfiguration;
+import com.mbero.sjdbc.configuration.TableCreationConfiguration;
 import com.mbero.sjdbc.enumtype.DatabaseType;
 import com.mbero.sjdbc.interfaces.DBConnectionManager;
 import com.mbero.sjdbc.operations.service.InsertOperationsService;
 import com.mbero.sjdbc.service.factory.DBOperationsServiceFactory;
-import com.mysql.jdbc.StringUtils;
 
 public class ToolsTest {
 	final static Logger log = Logger.getLogger(InsertOperationsService.class);
@@ -71,6 +71,32 @@ public class ToolsTest {
 		String insertQuery =Tools.returnInsertQueryFromMap(tableName, valuesToInsert);
 		assertTrue(insertOperationsService
 				.executeAnyInsertQueryFromParameter(configuration, insertQuery));
+	}
+	
+	@Test
+	public void testConstructCreateTableQuery()
+	{
+		String testQuery="CREATE TABLE Persons (PersonID int ,FirstName varchar (255),LastName varchar (255))";
+		
+		Map<String,String> columnNamesWithTypes = new HashMap<String,String>();
+		Map<String,String> columnNamesWithSizes = new HashMap<String,String>();
+		TableCreationConfiguration tableCreationConfigurationObject = new TableCreationConfiguration();
+		
+		columnNamesWithTypes.put("PersonID", "int");
+		columnNamesWithTypes.put("LastName", "varchar");
+		columnNamesWithTypes.put("FirstName", "varchar");
+		
+		columnNamesWithSizes.put("PersonID", "");
+		columnNamesWithSizes.put("LastName", "255");
+		columnNamesWithSizes.put("FirstName", "255");
+		
+		tableCreationConfigurationObject.setTableName("Persons");
+		tableCreationConfigurationObject.setColumnsWithSizes(columnNamesWithSizes);
+		tableCreationConfigurationObject.setColumnsWithTypes(columnNamesWithTypes);
+		
+		String queryFromTestedMethod = Tools.constructCreateTableQuery(tableCreationConfigurationObject);
+		assertTrue(testQuery.equals(queryFromTestedMethod));
+		
 	}
 
 }
