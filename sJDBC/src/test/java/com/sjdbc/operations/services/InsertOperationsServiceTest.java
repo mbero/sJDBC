@@ -13,28 +13,24 @@ import com.mbero.sjdbc.operations.service.InsertOperationsService;
 import com.mbero.sjdbc.service.factory.DBOperationsServiceFactory;
 
 public class InsertOperationsServiceTest extends DBOperationsService {
-	final static Logger log = Logger.getLogger(InsertOperationsService.class);
-	DBConnectionConfiguration configuration = new DBConnectionConfiguration();
+    final static Logger log = Logger.getLogger(InsertOperationsService.class);
+    DBConnectionConfiguration configuration = new DBConnectionConfiguration();
 
-	@Before
-	public void setUp() throws Exception {
-		configuration.setDatabaseType(DatabaseType.MYSQL);
-		configuration.setHostAndDatabaseName("localhost:3306/trainingpartner");
-		configuration.setUser("root");
-		configuration.setPassword("password");
-	}
+    @Before
+    public void setUp() throws Exception {
+	configuration.setDatabaseType(DatabaseType.MYSQL);
+	configuration.setHostAndDatabaseName("localhost:3306/trainingpartner");
+	configuration.setUser("root");
+	configuration.setPassword("password");
+    }
 
-	@Test
-	public void executeAnyInsertQueryFromParameterTest() {
+    @Test
+    public void executeAnyInsertQueryFromParameterTest() {
 
-		InsertOperationsService insertOperationsService = DBOperationsServiceFactory
-				.getInsertOperationsService();
-		String query = "INSERT INTO `trainingpartner`.`roles`(`id`,`role`) VALUES ('4', 'test')";
-		boolean rowsInsertedProperly = insertOperationsService
-				.executeAnyInsertQueryFromParameter(configuration, query);
-		assertTrue(rowsInsertedProperly);
+	InsertOperationsService insertOperationsService = DBOperationsServiceFactory.getInsertOperationsService();
+	String query = "INSERT INTO `trainingpartner`.`roles`(`id`,`role`) VALUES ('4', 'test')";
+	boolean rowsInsertedProperly = insertOperationsService.executeAnyInsertQueryFromParameter(query);
+	assertTrue(rowsInsertedProperly);
 
-	}
-	//TODO 1.Test metody zwracajacej string z kolumnam
-	
+    }
 }

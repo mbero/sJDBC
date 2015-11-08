@@ -15,35 +15,28 @@ import com.mbero.sjdbc.service.factory.DBOperationsServiceFactory;
 
 public class SelectOperationsServiceTest {
 
-	DBConnectionConfiguration configuration = new DBConnectionConfiguration();
+    DBConnectionConfiguration configuration = new DBConnectionConfiguration();
 
-	@Before
-	public void setUp() throws Exception {
-		configuration.setDatabaseType(DatabaseType.MYSQL);
-		configuration.setHostAndDatabaseName("localhost:3306/trainingpartner");
-		configuration.setUser("root");
-		configuration.setPassword("password");
-	}
+    @Before
+    public void setUp() throws Exception {
+	configuration.setDatabaseType(DatabaseType.MYSQL);
+	configuration.setHostAndDatabaseName("localhost:3306/trainingpartner");
+	configuration.setUser("root");
+	configuration.setPassword("password");
+    }
 
-	@Test
-	public void executeAnySelectQueryFromParameterTest() {
-		SelectOperationsService selectOperationsService = DBOperationsServiceFactory
-				.getSelectOperationsService();
-		List<Map<String, String>> result = selectOperationsService
-				.executeAnySelectQueryFromParameter(configuration,
-						"SELECT * FROM trainingpartner.exercises;",
-						"planned_repeats");
-		assertTrue(result.size() != 0);
-	}
+    @Test
+    public void executeAnySelectQueryFromParameterTest() {
+	SelectOperationsService selectOperationsService = DBOperationsServiceFactory.getSelectOperationsService();
+	List<Map<String, String>> result = selectOperationsService.executeAnySelectQueryFromParameter("SELECT * FROM trainingpartner.exercises;", "planned_repeats");
+	assertTrue(result.size() != 0);
+    }
 
-	@Test
-	public void getValuesFromDBTest() {
-		SelectOperationsService selectOperationsService = DBOperationsServiceFactory
-				.getSelectOperationsService();
-		List<Map<String, String>> result = selectOperationsService
-				.getValuesFromDB(configuration, "trainingpartner.exercises",
-						"", "planned_repeats");
-		assertTrue(result.size() != 0);
-	}
+    @Test
+    public void getValuesFromDBTest() {
+	SelectOperationsService selectOperationsService = DBOperationsServiceFactory.getSelectOperationsService();
+	List<Map<String, String>> result = selectOperationsService.getValuesFromDB("trainingpartner.exercises", "", "planned_repeats");
+	assertTrue(result.size() != 0);
+    }
 
 }

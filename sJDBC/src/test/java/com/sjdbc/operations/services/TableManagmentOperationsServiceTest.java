@@ -8,11 +8,11 @@ import org.junit.Test;
 
 import com.mbero.sjdbc.configuration.DBConnectionConfiguration;
 import com.mbero.sjdbc.enumtype.DatabaseType;
-import com.mbero.sjdbc.operations.service.DBOperationsService;
 import com.mbero.sjdbc.operations.service.InsertOperationsService;
+import com.mbero.sjdbc.operations.service.TableManagmentOperationsService;
 import com.mbero.sjdbc.service.factory.DBOperationsServiceFactory;
 
-public class TableManagmentOperationsTest extends DBOperationsService {
+public class TableManagmentOperationsServiceTest {
 	final static Logger log = Logger.getLogger(InsertOperationsService.class);
 	DBConnectionConfiguration configuration = new DBConnectionConfiguration();
 
@@ -24,6 +24,29 @@ public class TableManagmentOperationsTest extends DBOperationsService {
 		configuration.setPassword("password");
 	}
 
+	@Test
+	public void testCreateTable() {
+		fail("Not yet implemented"); // TODO
+		//check if persons table exist
+	    //if not exist createTable
+	}
+
+	@Test
+	public void testCreateTableByExecutingQuery() {
+		fail("Not yet implemented"); // TODO
+		//check if persons table exist
+	    //if not exist createTable
+	}
+
+	@Test
+	public void testDeleteTable() {
+		TableManagmentOperationsService tableManagmentOperationsService = DBOperationsServiceFactory.getTableManagmentOperationsService();
+	
+	}
+ 
+	@Test
+	public void testAlterTable() {
+		fail("Not yet implemented"); // TODO
+	}
 
 }
-

@@ -2,15 +2,17 @@ package com.mbero.sjdbc.configuration;
 
 public class DBConnectionConfigurationStore {
 
-	private static DBConnectionConfiguration dbConnectionConfiguration = new DBConnectionConfiguration();
+    private static DBConnectionConfiguration dbConnectionConfiguration = null;
 
-	public static DBConnectionConfiguration getDbConnectionConfiguration() {
-		return dbConnectionConfiguration;
+    public static DBConnectionConfiguration getDbConnectionConfiguration() {
+	if (dbConnectionConfiguration == null) {
+	    dbConnectionConfiguration = new DBConnectionConfiguration();
 	}
+	return dbConnectionConfiguration;
+    }
 
-	public static void setDbConnectionConfiguration(
-			DBConnectionConfiguration dbConnectionConfiguration) {
-		DBConnectionConfigurationStore.dbConnectionConfiguration = dbConnectionConfiguration;
-	}
+    public static void setDbConnectionConfiguration(DBConnectionConfiguration dbConnectionConfiguration) {
+	DBConnectionConfigurationStore.dbConnectionConfiguration = dbConnectionConfiguration;
+    }
 
 }
