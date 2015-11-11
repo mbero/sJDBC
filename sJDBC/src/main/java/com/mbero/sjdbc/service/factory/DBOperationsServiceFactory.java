@@ -1,5 +1,6 @@
 package com.mbero.sjdbc.service.factory;
 
+import com.mbero.sjdbc.operations.service.AlterTableOperationsService;
 import com.mbero.sjdbc.operations.service.DeleteOperationsService;
 import com.mbero.sjdbc.operations.service.InsertOperationsService;
 import com.mbero.sjdbc.operations.service.SelectOperationsService;
@@ -21,5 +22,9 @@ public class DBOperationsServiceFactory {
 
 	public static TableManagmentOperationsService getTableManagmentOperationsService() {
 		return new TableManagmentOperationsService();
+	}
+	
+	public static AlterTableOperationsService getAlterTableOperationsService(){
+	    	return new AlterTableOperationsService();
 	}
 }

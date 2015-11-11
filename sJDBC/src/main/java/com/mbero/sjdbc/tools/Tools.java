@@ -126,7 +126,7 @@ public class Tools {
 
     public static String constructCreateTableQuery(TableCreationConfiguration tableCreationConfigurationObject) {
 	StringBuilder queryBuilder = new StringBuilder();
-	queryBuilder.append("CREATE TABLE ").append(tableCreationConfigurationObject.getTableName() + " (");
+	queryBuilder.append("CREATE TABLE ").append(tableCreationConfigurationObject.getDatabaseName() + ".").append(tableCreationConfigurationObject.getTableName() + " (");
 	Map<String, String> columnNamesWithTypes = tableCreationConfigurationObject.getColumnsWithTypes();
 	Map<String, String> columnNamesWithSizes = tableCreationConfigurationObject.getColumnsWithSizes();
 	Set<String> columnNames = columnNamesWithTypes.keySet();
@@ -143,10 +143,6 @@ public class Tools {
 	if (finalQuery.endsWith(",")) {
 	    finalQuery = finalQuery.substring(0, finalQuery.length() - 1).concat(")");
 	}
-	/*
-	 * CREATE TABLE Persons (PersonID (),FirstName 255 (255),LastName 255
-	 * (255),
-	 */
 
 	return finalQuery;
     }

@@ -25,7 +25,7 @@ public class DeleteOperationsService extends DBOperationsService {
     public boolean deleteTable( String tableName) {
 	DBConnectionManager connectionManager = Tools.returnProperConnectionManager(dbConnectionConfiguration.getDatabaseType());
 	Connection conn = connectionManager.createConnection(dbConnectionConfiguration);
-	String dropTableQuery = "DROP TABLE " + tableName;
+	String dropTableQuery = "DROP TABLE " + dbConnectionConfiguration.getDatabaseName()+"."+tableName;
 	try {
 	    Statement stmt = conn.createStatement();
 	    stmt.executeUpdate(dropTableQuery);

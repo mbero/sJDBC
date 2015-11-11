@@ -4,10 +4,13 @@ import java.util.Map;
 
 public class TableCreationConfiguration {
 
+    private DBConnectionConfiguration dbConnectionConfiguration = DBConnectionConfigurationStore.getDbConnectionConfiguration();
+
+    private String databaseName = dbConnectionConfiguration.getDatabaseName();
     private String tableName;
     private Map<String, String> columnsWithTypes;
     private Map<String, String> columnsWithSizes;
-
+    
     public String getTableName() {
 	return tableName;
     }
@@ -32,4 +35,9 @@ public class TableCreationConfiguration {
 	this.columnsWithSizes = columnsWithSizes;
     }
 
+    public String getDatabaseName() {
+        return databaseName;
+    }
+    
+    
 }
